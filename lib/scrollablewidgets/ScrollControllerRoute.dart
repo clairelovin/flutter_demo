@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-class GridViewRoute extends StatelessWidget{
+class ScrollControllerRoute extends StatelessWidget{//滚动监听及控制
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("GridViewRoute"),
+        title: Text("ScrollControllerRoute"),
       ),
       body:
       Center(
