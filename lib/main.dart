@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:test_a/scrollablewidgets/CustomScrollViewRoute.dart';
 import 'package:test_a/scrollablewidgets/ListViewRoute.dart';
 import 'package:test_a/scrollablewidgets/ScrollControllerRoute.dart';
+import 'package:test_a/scrollablewidgets/ScrollNotificationRoute.dart';
 import 'package:test_a/scrollablewidgets/SingleChildScrollViewRoute.dart';
 import 'ConstrainedBoxAndSizedBoxRoute.dart';
 import 'ContainerRoute.dart';
@@ -22,6 +23,9 @@ import 'TransformRoute.dart';
 import 'WrapAndFlowRoute.dart';
 import 'StackAndPositionedRoute.dart';
 import 'ScaffoldAndTabBarAndBottomNavigationBarRoute.dart';
+import 'functionwidgets/InheritedWidgetRoute.dart';
+import 'functionwidgets/ProviderRoute.dart';
+import 'functionwidgets/WillPopScopeRoute.dart';
 
 void main() => {
 //  debugPrintMarkNeedsPaintStacks = true,
@@ -319,6 +323,42 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 Navigator.push(context, new MaterialPageRoute(builder: (context){
                   return new ScrollControllerRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to ScrollNotification route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new ScrollNotificationRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to WillPopScope route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new WillPopScopeRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to InheritedWidget route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new InheritedWidgetRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Provider route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new ProviderRoute();
                 }));
               },
             ),
