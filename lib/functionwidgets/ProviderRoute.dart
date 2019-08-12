@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+//import 'package:english_words/english_words.dart';
 import 'package:english_words/english_words.dart';
-
+import 'package:provider/provider.dart';
 class ProviderRoute extends StatelessWidget{//跨组件状态共享
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:test_a/functionwidgets/Counter.dart';
 import 'package:test_a/scrollablewidgets/CustomScrollViewRoute.dart';
 import 'package:test_a/scrollablewidgets/ListViewRoute.dart';
 import 'package:test_a/scrollablewidgets/ScrollControllerRoute.dart';
@@ -23,15 +24,24 @@ import 'TransformRoute.dart';
 import 'WrapAndFlowRoute.dart';
 import 'StackAndPositionedRoute.dart';
 import 'ScaffoldAndTabBarAndBottomNavigationBarRoute.dart';
+import 'functionwidgets/DialogRoute.dart';
+import 'functionwidgets/FutureAndStreamBuilderRoute.dart';
 import 'functionwidgets/InheritedWidgetRoute.dart';
 import 'functionwidgets/ProviderRoute.dart';
+import 'functionwidgets/ThemeRoute.dart';
 import 'functionwidgets/WillPopScopeRoute.dart';
+import 'package:provider/provider.dart';
 
 void main() => {
 //  debugPrintMarkNeedsPaintStacks = true,
 //  debugPrintMarkNeedsLayoutStacks = true,
 //  debugPaintBaselinesEnabled = true,
-  runApp(MyApp())
+  runApp(
+      ChangeNotifierProvider<Counter>.value(
+        notifier: Counter(1),
+        child: MyApp(),
+      )
+  )
 };
 
 class MyApp extends StatelessWidget {
@@ -90,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    Provider.of<Counter>(context,listen: false).add();
   }
 
   @override
@@ -128,6 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           children: <Widget>[
+            ListTile(title: Text("${Provider.of<Counter>(context).count}"),),
             FlatButton(
               child: Text("click to new route"),
               textColor: Colors.blue,
@@ -362,14 +374,45 @@ class _MyHomePageState extends State<MyHomePage> {
                 }));
               },
             ),
+            FlatButton(
+              child: Text("click to Theme route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new ThemeRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to FutureAndStreamBuilder route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new FutureAndStreamBuilderRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Dialog route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new DialogRoute();
+                }));
+              },
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: 
+      Builder(builder: (context){
+        print("floatingActionButton Builder");
+        return FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        );
+      }), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
