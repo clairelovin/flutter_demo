@@ -32,6 +32,8 @@ import 'functionwidgets/ThemeRoute.dart';
 import 'functionwidgets/WillPopScopeRoute.dart';
 import 'package:provider/provider.dart';
 
+import 'handleeventandnotification/PointerEventRoute.dart';
+
 void main() => {
 //  debugPrintMarkNeedsPaintStacks = true,
 //  debugPrintMarkNeedsLayoutStacks = true,
@@ -398,6 +400,15 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 Navigator.push(context, new MaterialPageRoute(builder: (context){
                   return new DialogRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to PointerEvent route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new PointerEventRoute();
                 }));
               },
             ),
