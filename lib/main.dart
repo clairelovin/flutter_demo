@@ -32,6 +32,8 @@ import 'functionwidgets/ThemeRoute.dart';
 import 'functionwidgets/WillPopScopeRoute.dart';
 import 'package:provider/provider.dart';
 
+import 'handleeventandnotification/GestureDetectorRoute.dart';
+import 'handleeventandnotification/NotificationRoute.dart';
 import 'handleeventandnotification/PointerEventRoute.dart';
 
 void main() => {
@@ -409,6 +411,24 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 Navigator.push(context, new MaterialPageRoute(builder: (context){
                   return new PointerEventRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to GestureDetector route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new GestureDetectorRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Notification route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new NotificationRoute();
                 }));
               },
             ),
