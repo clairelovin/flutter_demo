@@ -24,6 +24,16 @@ import 'TransformRoute.dart';
 import 'WrapAndFlowRoute.dart';
 import 'StackAndPositionedRoute.dart';
 import 'ScaffoldAndTabBarAndBottomNavigationBarRoute.dart';
+import 'animation/AnimatedBuilderRoute.dart';
+import 'animation/AnimatedSwitcherCounterRoute.dart';
+import 'animation/ComposeComponentRoute.dart';
+import 'animation/CustomPaintRoute.dart';
+import 'animation/FadeRoute.dart';
+import 'animation/HeroAnimationRoute.dart';
+import 'animation/StaggerRoute.dart';
+import 'fileandnetwork/DIORoute.dart';
+import 'fileandnetwork/FileOperationRoute.dart';
+import 'fileandnetwork/HttpRoute.dart';
 import 'functionwidgets/DialogRoute.dart';
 import 'functionwidgets/FutureAndStreamBuilderRoute.dart';
 import 'functionwidgets/InheritedWidgetRoute.dart';
@@ -429,6 +439,109 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 Navigator.push(context, new MaterialPageRoute(builder: (context){
                   return new NotificationRoute();
+                }));
+              },
+            ),
+//    虽然下面的两种方法都可以实现自定义切换动画，但实际使用时应优先考虑使用PageRouteBuilder，这样无需定义一个新的路由类，使用起来会比较方便。但是有些时候PageRouteBuilder是不能满足需求的，例如在应用过渡动画时我们需要读取当前路由的一些属性，这时就只能通过继承PageRoute的方式了
+            FlatButton(
+              child: Text("click to AnimatedBuilder route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+                    pageBuilder: (BuildContext context, Animation animation,
+                        Animation secondaryAnimation) {
+                      return new FadeTransition(
+                        //使用渐隐渐入过渡,
+                        opacity: animation,
+                        child: AnimatedBuilderRoute(), //路由B
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+
+            FlatButton(
+              child: Text("click to Fade route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, FadeRoute(builder: (context) {
+                  return AnimatedBuilderRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Hero route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new HeroAnimationRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Stagger route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new StaggerRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to AnimatedSwitcherCounter route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new AnimatedSwitcherCounterRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to ComposeComponent route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new ComposeComponentRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to CustomPaint route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new CustomPaintRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to FileOperation route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new FileOperationRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to Http route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new HttpRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("click to DIO route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new DIORoute();
                 }));
               },
             ),
